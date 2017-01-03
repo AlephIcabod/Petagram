@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Petagram</string>
+    <string name="nombre1">Kitty</string>
+    <string name="favoritos">FAVORITOS</string>
+    <string-array name="claves">
+        <item>UNO</item>
+        <item>DOS</item>
+        <item>TRES</item>
+        <item>CUATRO</item>
+        <item>CINCO</item>
+    </string-array>
 </resources>
