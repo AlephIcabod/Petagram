@@ -6,4 +6,6 @@
     <dimen name="infoPet">20dp</dimen>
     <dimen name="titulo">25dp</dimen>
     <dimen name="imagenCardView">300dp</dimen>
+    <dimen name="imagenCardViewMiMascota">250dp</dimen>
+    <dimen name="nombreMiMascota">22dp</dimen>
 </resources>

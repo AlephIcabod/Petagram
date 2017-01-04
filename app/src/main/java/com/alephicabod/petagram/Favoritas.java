@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.widget.ImageView;
+
+import com.alephicabod.petagram.adapters.MascotaAdapter;
+import com.alephicabod.petagram.pojo.Foto;
+import com.alephicabod.petagram.pojo.Mascota;
 
 import java.util.ArrayList;
 
@@ -23,7 +26,7 @@ public class Favoritas extends AppCompatActivity {
         Bundle extras=getIntent().getExtras();
         for(int i=0;i<claves.length;i++){
             String [] aux=(String [])extras.get(claves[i]);
-            favos.add(new Mascota(Integer.parseInt(aux[2]),Integer.parseInt(aux[1]),aux[0]));
+            favos.add(new Mascota(Integer.parseInt(aux[2]),Integer.parseInt(aux[1]),aux[0],new ArrayList<Foto>()));
         }
         RecyclerView listaFavoritos=(RecyclerView)findViewById(R.id.listaFavoritas);
         LinearLayoutManager llm=new LinearLayoutManager(this);

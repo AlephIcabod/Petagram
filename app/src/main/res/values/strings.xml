@@ -9,4 +9,20 @@
         <item>CUATRO</item>
         <item>CINCO</item>
     </string-array>
+
+    <string name="mContacto">Contacto</string>
+    <string name="mAbout">Acerca de</string>
+
+    <string name="nombreContacto">Nombre</string>
+    <string name="correoContacto">Email</string>
+    <string name="mensajeContacto">Mensaje</string>
+    <string name="textoEnviar">Enviar comentario</string>
+
+    <string name="nombreAcercaDe">Miguel Angel Bautista Cruz</string>
+    <string name="perfil">Estudiante de Ingeniería en Sistemas Computacionales</string>
+    <string name="github">https://github.com/AlephIcabod</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
