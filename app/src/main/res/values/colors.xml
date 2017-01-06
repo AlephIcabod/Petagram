@@ -6,4 +6,6 @@
     <color name="texto">#FFFFFF</color>
     <color name="fondo1">#347aa6</color>
     <color name="fondo2">#e66a6a</color>
+    <color name="blanco">#FFFFFF</color>
+
 </resources>
