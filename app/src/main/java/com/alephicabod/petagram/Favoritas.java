@@ -7,13 +7,18 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.alephicabod.petagram.adapters.MascotaAdapter;
-import com.alephicabod.petagram.pojo.Foto;
-import com.alephicabod.petagram.pojo.Mascota;
+import com.alephicabod.petagram.fragments.IListaMascotasFragment;
+import com.alephicabod.petagram.models.Foto;
+import com.alephicabod.petagram.models.Mascota;
+import com.alephicabod.petagram.presenters.IListaMascotasPresenter;
+import com.alephicabod.petagram.presenters.ListaMascotasPresenter;
 
 import java.util.ArrayList;
 
-public class Favoritas extends AppCompatActivity {
+public class Favoritas extends AppCompatActivity implements IListaMascotasFragment{
 
+     private RecyclerView listaFavoritos;
+    private IListaMascotasPresenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,17 +26,26 @@ public class Favoritas extends AppCompatActivity {
         Toolbar appbar=(Toolbar)findViewById(R.id.appBarDetalle);
         setSupportActionBar(appbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ArrayList<Mascota> favos=new ArrayList<Mascota>();
-        String[] claves=getResources().getStringArray(R.array.claves);
-        Bundle extras=getIntent().getExtras();
-        for(int i=0;i<claves.length;i++){
-            String [] aux=(String [])extras.get(claves[i]);
-            favos.add(new Mascota(Integer.parseInt(aux[2]),Integer.parseInt(aux[1]),aux[0],new ArrayList<Foto>()));
-        }
-        RecyclerView listaFavoritos=(RecyclerView)findViewById(R.id.listaFavoritas);
+        listaFavoritos=(RecyclerView)findViewById(R.id.listaFavoritas);
+        presenter =new ListaMascotasPresenter(this,this);
+        presenter.getFavoritos();
+    }
+
+    @Override
+    public void generateVerticalLayout() {
         LinearLayoutManager llm=new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         listaFavoritos.setLayoutManager(llm);
-        listaFavoritos.setAdapter(new MascotaAdapter(favos,this));
+    }
+
+    @Override
+    public MascotaAdapter createAdapter(ArrayList<Mascota> mascotas) {
+        MascotaAdapter adaptador=new MascotaAdapter(mascotas,this);
+        return adaptador;
+    }
+
+    @Override
+    public void initAdapter(MascotaAdapter adapter) {
+            listaFavoritos.setAdapter(adapter);
     }
 }

@@ -10,7 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alephicabod.petagram.R;
-import com.alephicabod.petagram.pojo.Mascota;
+import com.alephicabod.petagram.db.DataBase;
+import com.alephicabod.petagram.models.ConstructorMascotas;
+import com.alephicabod.petagram.models.Mascota;
 
 import java.util.ArrayList;
 
@@ -47,7 +49,8 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
             @Override
             public void onClick(View view) {
                 Toast.makeText(activity,"Agregado un voto a "+m.getNombre(),Toast.LENGTH_SHORT).show();
-                m.setVotos(m.getVotos()+1);
+                ConstructorMascotas cm=new ConstructorMascotas(activity);
+                m.setVotos(cm.darLike(m).getVotos());
                 holder.votos.setText(m.getVotos()+"");
             }
         });

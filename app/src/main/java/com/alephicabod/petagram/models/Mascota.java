@@ -1,4 +1,4 @@
-package com.alephicabod.petagram.pojo;
+package com.alephicabod.petagram.models;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 
 public class Mascota implements Comparable{
-    private int picture,votos;
+    private int picture,votos,id;
     private String nombre;
     private ArrayList<Foto> fotos;
 
@@ -16,6 +16,10 @@ public class Mascota implements Comparable{
         this.votos = votos;
         this.nombre = nombre;
         this.fotos=fotos;
+    }
+
+    public Mascota() {
+
     }
 
     public int getPicture() {
@@ -48,6 +52,14 @@ public class Mascota implements Comparable{
 
     public void setFotos(ArrayList<Foto> fotos) {
         this.fotos = fotos;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

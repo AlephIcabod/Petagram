@@ -11,56 +11,51 @@ import android.view.ViewGroup;
 
 import com.alephicabod.petagram.R;
 import com.alephicabod.petagram.adapters.MascotaAdapter;
-import com.alephicabod.petagram.pojo.Foto;
-import com.alephicabod.petagram.pojo.Mascota;
+import com.alephicabod.petagram.models.Foto;
+import com.alephicabod.petagram.models.Mascota;
+import com.alephicabod.petagram.presenters.IListaMascotasPresenter;
+import com.alephicabod.petagram.presenters.ListaMascotasPresenter;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListaMascotasFragment extends Fragment {
+public class ListaMascotasFragment extends Fragment implements  IListaMascotasFragment {
 
     private static ArrayList<Mascota> mascotas;
     private RecyclerView listaMascotas;
+    private IListaMascotasPresenter presenter;
     public ListaMascotasFragment() {
         // Required empty public constructor
     }
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment_lista_mascotas, container, false);
-        cargarDatos();
         listaMascotas=(RecyclerView)v.findViewById(R.id.listaMascotas);
-        LinearLayoutManager llm=new LinearLayoutManager(getContext());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        listaMascotas.setLayoutManager(llm);
-        listaMascotas.setAdapter(new MascotaAdapter(mascotas,getActivity()));
+        presenter=new ListaMascotasPresenter(this,getContext());
+        presenter.getMascotas();
         return  v;
     }
 
-    public  static ArrayList<Mascota> getMascotas(){
-       return mascotas;
-    }
-    private void cargarDatos(){
-        mascotas=new ArrayList<Mascota>();
-
-        mascotas.add(new Mascota(R.drawable.gato1,5,"Gatito",buscarFotos(R.drawable.gato1)));
-        mascotas.add(new Mascota(R.drawable.pajaro1,6,"Periquillo",buscarFotos(R.drawable.pajaro1)));
-        mascotas.add(new Mascota(R.drawable.pajaro2,8,"Pajarito",buscarFotos(R.drawable.pajaro2)));
-        mascotas.add(new Mascota(R.drawable.perro1,3,"Doggy",buscarFotos(R.drawable.perro1)));
-        mascotas.add(new Mascota(R.drawable.perro2,2,"Dobby",buscarFotos(R.drawable.perro2)));
-        mascotas.add(new Mascota(R.drawable.tortuga1,4,"Torty",buscarFotos(R.drawable.tortuga1)));
+    @Override
+    public void generateVerticalLayout() {
+        LinearLayoutManager llm=new LinearLayoutManager(getContext());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        listaMascotas.setLayoutManager(llm);
     }
 
-    private ArrayList<Foto> buscarFotos(int id){
-        ArrayList<Foto> aux=new ArrayList<Foto>();
-        for(int i=0;i<5;i++)
-        aux.add(new Foto(R.drawable.gato1,(int)(Math.random()*100)%10));
-        return aux;
+    @Override
+    public MascotaAdapter createAdapter(ArrayList<Mascota> mascotas) {
+        MascotaAdapter adaptador=new MascotaAdapter(mascotas,getActivity());
+        return adaptador;
     }
 
+    @Override
+    public void initAdapter(MascotaAdapter adapter) {
+        listaMascotas.setAdapter(adapter);
+    }
 }

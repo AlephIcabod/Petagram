@@ -8,10 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alephicabod.petagram.R;
-import com.alephicabod.petagram.pojo.Foto;
+import com.alephicabod.petagram.models.Foto;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 /**
  * Created by angel on 03/01/2017.

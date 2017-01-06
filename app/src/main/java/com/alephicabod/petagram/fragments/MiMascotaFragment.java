@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +14,10 @@ import android.widget.TextView;
 
 import com.alephicabod.petagram.R;
 import com.alephicabod.petagram.adapters.MiMascotaAdapter;
-import com.alephicabod.petagram.pojo.Foto;
-import com.alephicabod.petagram.pojo.Mascota;
+import com.alephicabod.petagram.models.Foto;
+import com.alephicabod.petagram.models.Mascota;
+import com.alephicabod.petagram.presenters.IMiMascotaPresenter;
+import com.alephicabod.petagram.presenters.MiMascotaPresenter;
 
 import java.util.ArrayList;
 
@@ -22,14 +25,14 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MiMascotaFragment extends Fragment {
+public class MiMascotaFragment extends Fragment implements IMiMascotaFragment{
 
     private Mascota miMascota;
     private RecyclerView fotos;
+    private IMiMascotaPresenter presenter;
     public MiMascotaFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,16 +40,30 @@ public class MiMascotaFragment extends Fragment {
         fotos=(RecyclerView)v.findViewById(R.id.rvFotosMiMascota);
         ImageView thumnail=(ImageView)v.findViewById(R.id.miMascotaThumbnail);
         TextView nombre=(TextView)v.findViewById(R.id.nombreMiMascota);
-        GridLayoutManager layoutManager=new GridLayoutManager(getContext(),3);
-        fotos.setLayoutManager(layoutManager);
-        ArrayList<Foto>aux=new ArrayList<Foto>();
-        for(int j=0;j<10;j++)
-            aux.add(new Foto(R.drawable.gato1,(int)(Math.random()*100)%10+1));
-        miMascota=new Mascota(R.drawable.gato1,5,"Gatito",aux);
+        presenter=new MiMascotaPresenter(this,getContext());
+        miMascota=presenter.getMiMascota();
+        presenter.getFotos();
+        Log.i("Fotos",""+miMascota.getFotos().size());
         thumnail.setImageResource(miMascota.getPicture());
         nombre.setText(miMascota.getNombre());
-        fotos.setAdapter(new MiMascotaAdapter(miMascota.getFotos()));
         return v;
     }
 
+
+    @Override
+    public void generateGridLayout() {
+        GridLayoutManager layoutManager=new GridLayoutManager(getContext(),3);
+        fotos.setLayoutManager(layoutManager);
+    }
+
+    @Override
+    public MiMascotaAdapter createAdapter(ArrayList<Foto> fotos) {
+        MiMascotaAdapter adapter=new MiMascotaAdapter(fotos);
+        return adapter;
+    }
+
+    @Override
+    public void initAdapter(MiMascotaAdapter adapter) {
+        fotos.setAdapter(adapter);
+    }
 }

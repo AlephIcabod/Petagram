@@ -6,17 +6,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.alephicabod.petagram.adapters.MascotaAdapter;
 import com.alephicabod.petagram.adapters.PageAdapter;
 import com.alephicabod.petagram.fragments.ListaMascotasFragment;
 import com.alephicabod.petagram.fragments.MiMascotaFragment;
-import com.alephicabod.petagram.pojo.Mascota;
+import com.alephicabod.petagram.models.Mascota;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -74,13 +71,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.topFavoritos:
                 i=new Intent(MainActivity.this,Favoritas.class);
-                ArrayList<Mascota> mascotas= ListaMascotasFragment.getMascotas();
-                Collections.sort(mascotas);
-                String [] claves=getResources().getStringArray(R.array.claves);
-                for(int j=0;j<5;j++){
-                    String [] x={mascotas.get(j).getNombre(),mascotas.get(j).getVotos()+"",mascotas.get(j).getPicture()+""};
-                    i.putExtra(claves[j],x);
-                }
                 startActivity(i);
                 break;
         }

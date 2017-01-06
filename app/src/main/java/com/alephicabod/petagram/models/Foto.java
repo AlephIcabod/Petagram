@@ -1,4 +1,4 @@
-package com.alephicabod.petagram.pojo;
+package com.alephicabod.petagram.models;
 
 /**
  * Created by angel on 03/01/2017.
