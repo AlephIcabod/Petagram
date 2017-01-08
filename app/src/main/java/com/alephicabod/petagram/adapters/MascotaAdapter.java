@@ -10,9 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alephicabod.petagram.R;
-import com.alephicabod.petagram.db.DataBase;
-import com.alephicabod.petagram.models.ConstructorMascotas;
+import com.alephicabod.petagram.db.ConstructorMascotas;
 import com.alephicabod.petagram.models.Mascota;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -38,7 +38,12 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
     @Override
     public void onBindViewHolder(final MascotaViewHolder holder, int position) {
         final Mascota m=mascotas.get(position);
-        holder.foto.setImageResource(m.getPicture());
+        //holder.foto.setImageResource(m.getPicture());
+        Picasso.with(activity)
+                .load(m.getPicture())
+                .placeholder(R.drawable.cat_footprint_48)
+                .into(holder.foto);
+
         if(position%2==0)
             holder.foto.setBackgroundResource(R.color.fondo1);
         else

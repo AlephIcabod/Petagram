@@ -1,4 +1,4 @@
-package com.alephicabod.petagram.models;
+package com.alephicabod.petagram.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,6 +6,8 @@ import android.content.Context;
 import com.alephicabod.petagram.R;
 import com.alephicabod.petagram.db.DBConfig;
 import com.alephicabod.petagram.db.DataBase;
+import com.alephicabod.petagram.models.Foto;
+import com.alephicabod.petagram.models.Mascota;
 
 import java.util.ArrayList;
 
@@ -19,7 +21,7 @@ public class ConstructorMascotas {
     public ConstructorMascotas(Context context) {
         this.context = context;
         db=new DataBase(context);
-        initData();
+        //initData();
     }
 
     public ArrayList<Mascota> getMascotas(){
@@ -28,14 +30,14 @@ public class ConstructorMascotas {
 
     private void initData(){
         if(db.getMascotas().size()<1){
-            Mascota[] mascotas={
+            Mascota[] mascotas={};/*{
                     new Mascota(R.drawable.gato1,0,"Mi mascota",buscarFotos(R.drawable.gato1)),
                     new Mascota(R.drawable.pajaro1,0,"Periquillo",buscarFotos(R.drawable.pajaro1)),
                     new Mascota(R.drawable.pajaro2,0,"Pajarito",buscarFotos(R.drawable.pajaro2)),
                     new Mascota(R.drawable.perro1,0,"Doggy",buscarFotos(R.drawable.perro1)),
                     new Mascota(R.drawable.perro2,0,"Dobby",buscarFotos(R.drawable.perro2)),
                     new Mascota(R.drawable.tortuga1,0,"Torty",buscarFotos(R.drawable.tortuga1))
-            };
+            };¨*/
             for(int j=0;j<mascotas.length;j++){
                 ContentValues values=new ContentValues();
                 values.put(DBConfig.MASCOTA_NOMBRE,mascotas[j].getNombre());
@@ -56,8 +58,9 @@ public class ConstructorMascotas {
     public Mascota darLike(Mascota m){
         ContentValues values=new ContentValues();
         values.put(DBConfig.MASCOTA_VOTOS, m.getVotos()+1);
-        db.updateMascota(values,m.getId());
-        return db.getMascota(m.getId());
+       // db.updateMascota(values,m.getId());
+        //return db.getMascota(m.getId());
+        return new Mascota();
     }
 
     private ArrayList<Foto> buscarFotos(int id){

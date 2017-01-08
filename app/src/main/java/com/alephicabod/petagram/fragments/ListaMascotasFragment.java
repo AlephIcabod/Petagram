@@ -37,7 +37,7 @@ public class ListaMascotasFragment extends Fragment implements  IListaMascotasFr
         View v=inflater.inflate(R.layout.fragment_lista_mascotas, container, false);
         listaMascotas=(RecyclerView)v.findViewById(R.id.listaMascotas);
         presenter=new ListaMascotasPresenter(this,getContext());
-        presenter.getMascotas();
+        presenter.getMascotasRest();
         return  v;
     }
 

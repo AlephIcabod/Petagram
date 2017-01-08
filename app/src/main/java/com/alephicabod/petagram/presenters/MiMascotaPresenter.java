@@ -1,10 +1,9 @@
 package com.alephicabod.petagram.presenters;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.alephicabod.petagram.fragments.IMiMascotaFragment;
-import com.alephicabod.petagram.models.ConstructorMascotas;
+import com.alephicabod.petagram.db.ConstructorMascotas;
 import com.alephicabod.petagram.models.Foto;
 import com.alephicabod.petagram.models.Mascota;
 

@@ -7,11 +7,11 @@ import java.util.ArrayList;
  */
 
 public class Mascota implements Comparable{
-    private int picture,votos,id;
-    private String nombre;
+    private int votos;
+    private String nombre,id,picture;
     private ArrayList<Foto> fotos;
 
-    public Mascota(int picture, int votos, String nombre,ArrayList<Foto> fotos) {
+    public Mascota(String picture, int votos, String nombre,ArrayList<Foto> fotos) {
         this.picture = picture;
         this.votos = votos;
         this.nombre = nombre;
@@ -22,11 +22,11 @@ public class Mascota implements Comparable{
 
     }
 
-    public int getPicture() {
+    public String getPicture() {
         return picture;
     }
 
-    public void setPicture(int picture) {
+    public void setPicture(String picture) {
         this.picture = picture;
     }
 
@@ -54,11 +54,11 @@ public class Mascota implements Comparable{
         this.fotos = fotos;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

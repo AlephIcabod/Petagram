@@ -18,6 +18,7 @@ import com.alephicabod.petagram.models.Foto;
 import com.alephicabod.petagram.models.Mascota;
 import com.alephicabod.petagram.presenters.IMiMascotaPresenter;
 import com.alephicabod.petagram.presenters.MiMascotaPresenter;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -42,9 +43,9 @@ public class MiMascotaFragment extends Fragment implements IMiMascotaFragment{
         TextView nombre=(TextView)v.findViewById(R.id.nombreMiMascota);
         presenter=new MiMascotaPresenter(this,getContext());
         miMascota=presenter.getMiMascota();
-        presenter.getFotos();
-        Log.i("Fotos",""+miMascota.getFotos().size());
-        thumnail.setImageResource(miMascota.getPicture());
+       // presenter.getFotos();
+//        Log.i("Fotos",""+miMascota.getFotos().size());
+        Picasso.with(getContext()).load(miMascota.getPicture()).placeholder(R.drawable.gato1).into(thumnail);
         nombre.setText(miMascota.getNombre());
         return v;
     }

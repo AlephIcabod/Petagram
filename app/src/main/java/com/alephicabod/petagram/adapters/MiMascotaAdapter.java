@@ -40,7 +40,8 @@ public class MiMascotaAdapter extends RecyclerView.Adapter<MiMascotaAdapter.MiMa
 
     @Override
     public int getItemCount() {
-        return fotos.size();
+//        return fotos.size();
+        return 0;
     }
 
     public class MiMascotaHolderView extends  RecyclerView.ViewHolder{
