@@ -1,10 +1,14 @@
 package com.alephicabod.petagram.rest;
 
+
+
 import com.alephicabod.petagram.rest.model.MascotaResponse;
+import com.alephicabod.petagram.rest.model.MiMascotaResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import rx.Observable;
 
 import static android.R.attr.id;
 
@@ -14,7 +18,9 @@ import static android.R.attr.id;
 
 public interface Endpoints  {
     @GET(ConstantsApi.URL_GET_RECENT_MEDIA_USER)
-    Call<MascotaResponse> getRecentMedia();
+    Observable<MascotaResponse> getRecentMedia();
     @GET(ConstantsApi.GET_MEDIA_USUARIO)
-    Call<MascotaResponse>getUsuario(@Path("user-id") String id);
+    Observable<MascotaResponse>getUsuario(@Path("user-id") String id);
+    @GET(ConstantsApi.GET_MEDIA_USUARIO)
+    Observable<MiMascotaResponse>getMiUsuario(@Path("user-id") String id);
 }

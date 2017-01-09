@@ -5,20 +5,29 @@ package com.alephicabod.petagram.models;
  */
 
 public class Foto {
-    private int foto,votos;
+    private int votos;
 
-    public Foto(int foto, int votos) {
-        this.foto = foto;
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    private String fecha,url;
+
+    public Foto(String url, int votos) {
+        this.url=url;
         this.votos = votos;
     }
 
-    public int getFoto() {
-        return foto;
+    public Foto() {
+
     }
 
-    public void setFoto(int foto) {
-        this.foto = foto;
-    }
+
+
 
     public int getVotos() {
         return votos;
@@ -26,5 +35,13 @@ public class Foto {
 
     public void setVotos(int votos) {
         this.votos = votos;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

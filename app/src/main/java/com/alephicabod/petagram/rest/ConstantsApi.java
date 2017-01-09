@@ -14,8 +14,8 @@ public final class ConstantsApi {
 
 
     //Cada usuario sandbox con su id corresponden en el indice de los arreglos;
-    public static final String[] USUARIOS_SANDBOX={"4302183848"};
-    public static final String[] USUARIOS_SANDBOX_NOMBRE={"rockymartinez77"};
+    public static final String[] USUARIOS_SANDBOX={"4377271040","4302183848"};
+    public static final String[] USUARIOS_SANDBOX_NOMBRE={"alephcoursera","rockymartinez77"};
     public static final String GET_MEDIA_USUARIO="users/{user-id}/media/recent/"+KEY_ACCESS_TOKEN+ACCESS_TOKEN;
 
 }

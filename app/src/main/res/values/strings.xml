@@ -2,6 +2,7 @@
     <string name="app_name">Petagram</string>
     <string name="nombre1">Kitty</string>
     <string name="favoritos">FAVORITOS</string>
+    <string name="fecha">14/01/17 04:50:41</string>
     <string-array name="claves">
         <item>UNO</item>
         <item>DOS</item>
@@ -24,6 +25,7 @@
     <string name="github">https://github.com/AlephIcabod</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btnUsuario">Guardar Cuenta</string>
+    <string name="txtusuario">Ingresa tu usuario</string>
 
 </resources>

@@ -37,7 +37,7 @@ public class ConstructorMascotas {
                     new Mascota(R.drawable.perro1,0,"Doggy",buscarFotos(R.drawable.perro1)),
                     new Mascota(R.drawable.perro2,0,"Dobby",buscarFotos(R.drawable.perro2)),
                     new Mascota(R.drawable.tortuga1,0,"Torty",buscarFotos(R.drawable.tortuga1))
-            };¨*/
+            };¨
             for(int j=0;j<mascotas.length;j++){
                 ContentValues values=new ContentValues();
                 values.put(DBConfig.MASCOTA_NOMBRE,mascotas[j].getNombre());
@@ -51,7 +51,7 @@ public class ConstructorMascotas {
                     valorFotos.put(DBConfig.FOTO_RECURSO,mascotas[j].getFotos().get(k).getFoto());
                     db.insertarFoto(valorFotos);
                 }
-            }
+            }*/
         }
     }
 
@@ -63,13 +63,13 @@ public class ConstructorMascotas {
         return new Mascota();
     }
 
-    private ArrayList<Foto> buscarFotos(int id){
+    /*private ArrayList<Foto> buscarFotos(int id){
         ArrayList<Foto> aux=new ArrayList<Foto>();
         for(int i=0;i<(int)((Math.random()*100)%10)+1;i++)
             aux.add(new Foto(R.drawable.gato1,(int)(Math.random()*100)%10));
         return aux;
     }
-
+*/
     public ArrayList<Mascota> getFavoritos(){
         return db.getFavoritos();
     }

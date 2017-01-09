@@ -7,7 +7,7 @@
  <item android:id="@+id/mAbout"
      android:title="@string/mAbout">
  </item>
- <item android:id="@+id/registrarUsuario"
+ <item android:id="@+id/mregistrarUsuario"
      android:title="@string/mRegistrar">
  </item>
  <item android:id="@+id/topFavoritos"

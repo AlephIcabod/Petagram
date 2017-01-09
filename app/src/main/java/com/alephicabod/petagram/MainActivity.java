@@ -73,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
                 i=new Intent(MainActivity.this,Favoritas.class);
                 startActivity(i);
                 break;
+            case R.id.mregistrarUsuario:
+                i=new Intent(MainActivity.this,ConfigurarCuentaActivity.class);
+                startActivity(i);
+                break;
         }
         return true;
     }

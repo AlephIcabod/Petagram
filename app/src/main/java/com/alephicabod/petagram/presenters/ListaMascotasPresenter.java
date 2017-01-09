@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.alephicabod.petagram.fragments.IListaMascotasFragment;
 import com.alephicabod.petagram.db.ConstructorMascotas;
 import com.alephicabod.petagram.models.Mascota;
+import com.alephicabod.petagram.models.MascotaAux;
 import com.alephicabod.petagram.rest.ConstantsApi;
 import com.alephicabod.petagram.rest.Endpoints;
 import com.alephicabod.petagram.rest.adapter.RestAdapter;
@@ -18,11 +19,15 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.concurrent.ThreadFactory;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by angel on 05/01/2017.
@@ -47,26 +52,20 @@ public class ListaMascotasPresenter implements IListaMascotasPresenter{
         RestAdapter restAdapter=new RestAdapter();
         Gson gson=restAdapter.constructirDeserializador();
         Endpoints endpoints=restAdapter.establecerConexionInstagram(gson);
-        for(int l=0;l< ConstantsApi.USUARIOS_SANDBOX.length;l++){
-            obtenerImagenesNuevas(endpoints.getUsuario(ConstantsApi.USUARIOS_SANDBOX[l]),mascotas);}
-        obtenerImagenesNuevas(endpoints.getRecentMedia(),mascotas);
+        for (int i = 0; i <ConstantsApi.USUARIOS_SANDBOX.length ; i++) {
+            int finalI = i;
+            endpoints.getUsuario(ConstantsApi.USUARIOS_SANDBOX[i])
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe((mascota)->{
+                        mascotas.addAll(mascota.getMascotas());
+                        Collections.sort(mascotas);
+                        showMascotas(mascotas);
+                    },e->e.printStackTrace());
+        }
     }
 
-    private void obtenerImagenesNuevas(Call<MascotaResponse> responseCall, final ArrayList<Mascota> mascotas){
 
-        responseCall.enqueue(new Callback<MascotaResponse>(){
-            @Override
-            public void onResponse(Call<MascotaResponse> call, Response<MascotaResponse> response) {
-                MascotaResponse mascotaResponse=response.body();
-                mascotas.addAll(mascotaResponse.getMascotas());
-                showMascotas(mascotas);
-            }
-            @Override
-            public void onFailure(Call<MascotaResponse> call, Throwable t) {
-                Toast.makeText(context, "Hubo un error en la actualizacion", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
 
     @Override
@@ -83,50 +82,35 @@ public class ListaMascotasPresenter implements IListaMascotasPresenter{
 
     @Override
     public void getFavoritos() {
-        CargarImagenes c=new CargarImagenes();
-        c.execute(new ArrayList<Mascota>());
+        RestAdapter restAdapter=new RestAdapter();
+        Gson gson=restAdapter.constructirDeserializador();
+        Endpoints endpoints=restAdapter.establecerConexionInstagram(gson);
+        for (int i = 0; i <ConstantsApi.USUARIOS_SANDBOX.length ; i++) {
+            int finalI = i;
+            endpoints.getUsuario(ConstantsApi.USUARIOS_SANDBOX[i])
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe((mascota)->{
+                        mascotas.addAll(mascota.getMascotas());
+
+                        showMascotas(ordenarPorVotos());
+                    },e->e.printStackTrace());
+        }
     }
 
-    private class CargarImagenes extends AsyncTask<ArrayList<Mascota>,Void,ArrayList<Mascota>>{
-
-        @Override
-        protected ArrayList<Mascota> doInBackground(ArrayList<Mascota>... arrayLists) {
-            RestAdapter restAdapter=new RestAdapter();
-            Gson gson=restAdapter.constructirDeserializador();
-            Endpoints endpoints=restAdapter.establecerConexionInstagram(gson);
-            for(int l=0;l< ConstantsApi.USUARIOS_SANDBOX.length;l++){
-                obtenerFavoritas(endpoints.getUsuario(ConstantsApi.USUARIOS_SANDBOX[l]),arrayLists[0]);}
-                obtenerFavoritas(endpoints.getRecentMedia(),arrayLists[0]);
-            return mascotas;
-        }
-
-        private void obtenerFavoritas(Call<MascotaResponse> recentMedia, ArrayList<Mascota> arrayList) {
-            recentMedia.enqueue(new Callback<MascotaResponse>(){
-                @Override
-                public void onResponse(Call<MascotaResponse> call, Response<MascotaResponse> response) {
-                    MascotaResponse mascotaResponse=response.body();
-                    mascotas.addAll(mascotaResponse.getMascotas());
-                    Collections.sort(mascotas);
-                    ArrayList<Mascota> aux=new ArrayList<Mascota>();
-                    for (int i = 0; i <5 ; i++) {
-                        aux.add(mascotas.get(i));
-                    }
-                    showMascotas(aux);
-                }
-                @Override
-                public void onFailure(Call<MascotaResponse> call, Throwable t) {
-                    Toast.makeText(context, "Hubo un error en la actualizacion", Toast.LENGTH_SHORT).show();
-                }
-
-
-
-            });
-        }
-
-
+private ArrayList<Mascota> ordenarPorVotos(){
+    ArrayList<MascotaAux> aux=new ArrayList<>();
+    for (int i = 0; i < mascotas.size(); i++) {
+        MascotaAux m=new MascotaAux(mascotas.get(i));
+        aux.add(m);
     }
-
-
+    Collections.sort(aux);
+    ArrayList<Mascota> aux2=new ArrayList<>();
+    for (int i = 0; i <5 ; i++) {
+        aux2.add(aux.get(i));
+    }
+    return aux2;
+}
 
 }
 
