@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.mregistrarUsuario:
                 i=new Intent(MainActivity.this,ConfigurarCuentaActivity.class);
                 startActivity(i);
+                finish();
                 break;
         }
         return true;
