@@ -16,4 +16,7 @@
      app:showAsAction="always"
      >
  </item>
+ <item android:id="@+id/mNotificaciones"
+     android:title="@string/mNotificaciones">
+ </item>
 </menu>

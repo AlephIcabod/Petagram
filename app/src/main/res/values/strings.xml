@@ -14,6 +14,7 @@
     <string name="mContacto">Contacto</string>
     <string name="mAbout">Acerca de</string>
     <string name="mRegistrar">Configurar cuenta</string>
+    <string name="mNotificaciones">Recibir notificaciones</string>
 
     <string name="nombreContacto">Nombre</string>
     <string name="correoContacto">Email</string>

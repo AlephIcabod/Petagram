@@ -28,6 +28,14 @@ public class RestAdapter {
         return retrofit.create(Endpoints.class);
     }
 
+    public Endpoints establecerConexionFirebase(){
+        Retrofit retrofit=new Retrofit.Builder()
+                .baseUrl(ConstantsApi.ROOT_URL_FIREBASE)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        return retrofit.create(Endpoints.class);
+    }
+
     public Gson constructirDeserializador(){
         GsonBuilder builder=new GsonBuilder();
         builder.registerTypeAdapter(MascotaResponse.class,new MascotaDeserializador());
