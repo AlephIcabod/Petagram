@@ -27,8 +27,13 @@ public interface Endpoints  {
     Observable<MascotaResponse>getUsuario(@Path("user-id") String id);
     @GET(ConstantsApi.GET_MEDIA_USUARIO)
     Observable<MiMascotaResponse>getMiUsuario(@Path("user-id") String id);
+
+
+
+
     @FormUrlEncoded
     @POST(ConstantsApi.KEY_FIREBASE_USUARIO)
     Call<UsuarioResponse>registrarUsuario(@Field("id_dispositivo") String id_dispositivo,@Field("id_usuario_instagram") String id_usuario_instagram);
+
 
 }

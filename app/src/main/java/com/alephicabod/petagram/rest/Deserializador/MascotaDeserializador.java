@@ -43,7 +43,8 @@ public class MascotaDeserializador implements JsonDeserializer<MascotaResponse> 
                 JsonObject imageJson            = contactoResponseDataObject.getAsJsonObject(JsonKeys.MEDIA_IMAGES);
                 JsonObject stdResolutionJson    = imageJson.getAsJsonObject(JsonKeys.MEDIA_STANDARD_RESOLUTION);
                 String urlFoto                  = stdResolutionJson.get(JsonKeys.MEDIA_URL).getAsString();
-                String fecha                    =contactoResponseDataObject.get(JsonKeys.CREATED_AT).getAsString();
+                String fecha                    = contactoResponseDataObject.get(JsonKeys.CREATED_AT).getAsString();
+                String id_foto                  = contactoResponseDataObject.get(JsonKeys.FOTO_ID).getAsString();
 
                 JsonObject likesJson = contactoResponseDataObject.getAsJsonObject(JsonKeys.MEDIA_LIKES);
                 int likes = likesJson.get(JsonKeys.MEDIA_LIKES_COUNT).getAsInt();
@@ -53,8 +54,9 @@ public class MascotaDeserializador implements JsonDeserializer<MascotaResponse> 
                 m.setNombre(nombreCompleto);
                 m.setPicture(urlFoto);
                 m.setVotos(likes);
-                mascotas.add(m);
+                m.setId_foto(id_foto);
                 m.setFecha(fecha);
+                mascotas.add(m);
             }
 
         return mascotas;

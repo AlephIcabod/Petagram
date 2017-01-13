@@ -55,8 +55,16 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
         c.setTimeInMillis(Long.parseLong(m.getFecha())*1000);
         SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yy hh:mm:ss");
         holder.fecha.setText(sdf.format(c.getTime()));
-        holder.nombre.setText(m.getNombre());
+        holder.nombre.setText(m.getId());
         holder.votos.setText(m.getVotos()+"");
+
+        holder.iconoFavs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(activity,m.getId_foto(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override
@@ -65,7 +73,7 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
     }
 
     public static class MascotaViewHolder extends RecyclerView.ViewHolder{
-        private ImageView foto;
+        private ImageView foto,iconoFavs;
         private TextView nombre,votos,fecha;
 
 
@@ -75,6 +83,7 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
             nombre=(TextView)itemView.findViewById(R.id.nombre);
             votos=(TextView)itemView.findViewById(R.id.votos);
             fecha=(TextView)itemView.findViewById(R.id.fecha);
+            iconoFavs=(ImageView)itemView.findViewById(R.id.iconoFavs);
         }
     }
 }

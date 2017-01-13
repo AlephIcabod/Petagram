@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class Mascota  implements Comparable {
     private int votos;
-    private String nombre,id,picture,fecha;
+    private String nombre,id,picture,fecha,id_foto;
     private ArrayList<Foto> fotos;
 
     public String getFecha() {
@@ -20,8 +20,17 @@ public class Mascota  implements Comparable {
         this.fecha = fecha;
     }
 
+    public String getId_foto() {
+        return id_foto;
+    }
+
+    public void setId_foto(String id_foto) {
+        this.id_foto = id_foto;
+    }
+
     public Mascota(String picture, int votos, String nombre, ArrayList<Foto> fotos) {
         this.picture = picture;
+
         this.votos = votos;
         this.nombre = nombre;
         this.fotos=fotos;
