@@ -95,7 +95,7 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
                                     enviarLikeFirebase(m.getId_foto(),m.getNombre());
                                 } else {
                                     Toast.makeText(activity, "Algo no salio bien", Toast.LENGTH_LONG).show();
-                                    Log.d("PETICION LIKE", response.message());
+                                    Log.d("PETICION LIKE", response.code()+"");
                                 }
                             }
                             @Override
