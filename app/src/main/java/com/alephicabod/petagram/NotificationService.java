@@ -20,12 +20,15 @@ public class NotificationService extends FirebaseMessagingService {
     private static final int REQUEST_CODE=0;
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        Log.d(TAG,remoteMessage.getNotification().getBody());
-        notificacion(remoteMessage.getNotification().getBody());
+        Log.d(TAG,remoteMessage.getNotification().getTitle());
+        notificacion(remoteMessage.getNotification().getBody(),remoteMessage.getNotification().getTitle());
+
+
     }
 
-    private void notificacion(String mensaje){
+    private void notificacion(String mensaje,String titulo){
         Intent i=new Intent(this,MainActivity.class);
+        i.putExtra("NOTIFICACION",titulo);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent=PendingIntent.getActivity(this,REQUEST_CODE,i,PendingIntent.FLAG_ONE_SHOT);
 

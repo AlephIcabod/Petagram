@@ -4,10 +4,18 @@ import com.alephicabod.petagram.rest.ConstantsApi;
 import com.alephicabod.petagram.rest.Deserializador.MascotaDeserializador;
 import com.alephicabod.petagram.rest.Deserializador.MiMascotaDeserializador;
 import com.alephicabod.petagram.rest.Endpoints;
+import com.alephicabod.petagram.rest.model.LikeResponse;
 import com.alephicabod.petagram.rest.model.MascotaResponse;
 import com.alephicabod.petagram.rest.model.MiMascotaResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+
+import java.lang.reflect.Type;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -25,6 +33,18 @@ public class RestAdapter {
                             .addConverterFactory(GsonConverterFactory.create(gson))
                             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                             .build();
+        return retrofit.create(Endpoints.class);
+    }
+
+
+
+
+    public Endpoints establecerConexionInstagram(){
+        Retrofit retrofit=new Retrofit.Builder()
+                .baseUrl(ConstantsApi.ROOT_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
         return retrofit.create(Endpoints.class);
     }
 
@@ -47,4 +67,7 @@ public class RestAdapter {
         builder.registerTypeAdapter(MiMascotaResponse.class,new MiMascotaDeserializador());
         return  builder.create();
     }
+
+
+
 }
