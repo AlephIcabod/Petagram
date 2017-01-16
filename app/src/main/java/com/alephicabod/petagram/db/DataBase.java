@@ -58,7 +58,7 @@ public class DataBase extends SQLiteOpenHelper{
         Cursor registros=db.rawQuery(query,null);
 
         while (registros.moveToNext()){
-            Mascota aux=new Mascota();
+          /*  Mascota aux=new Mascota();
             aux.setId(registros.getInt(0));
             aux.setNombre(registros.getString(1));
             aux.setPicture(registros.getInt(2));
@@ -71,7 +71,7 @@ public class DataBase extends SQLiteOpenHelper{
             }
 
             aux.setFotos(fotos);
-            mascotas.add(aux);
+            mascotas.add(aux);*/
         }
         db.close();
         return mascotas;
@@ -102,7 +102,7 @@ public class DataBase extends SQLiteOpenHelper{
 
     public Mascota getMascota(int id){
         Mascota m=new Mascota();
-            String query="Select * from "+DBConfig.MASCOTA_NAME+" where "+
+          /*  String query="Select * from "+DBConfig.MASCOTA_NAME+" where "+
                     DBConfig.MASCOTA_ID+" = "+id;
         SQLiteDatabase db=this.getWritableDatabase();
         Cursor c=db.rawQuery(query,null);
@@ -119,7 +119,7 @@ public class DataBase extends SQLiteOpenHelper{
             }
             m.setFotos(fotos);
         }
-        db.close();
+        db.close();*/
         return m;
     }
 

@@ -10,4 +10,6 @@ public interface IMiMascotaPresenter {
     public void getFotos();
     public void showFotos();
     public Mascota getMiMascota();
+
+    Mascota getPet();
 }

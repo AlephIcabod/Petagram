@@ -26,12 +26,29 @@
             android:orientation="horizontal"
             android:gravity="fill_horizontal"
             >
-                <ImageView
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                >
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/addFavorito"
-                    android:src="@drawable/dog_bone_52"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+                    android:id="@+id/nombre"
+                    android:text="@string/nombre1"
+                    android:textSize="@dimen/infoPet"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fecha"
+                    android:text="@string/fecha"
+                    android:layout_marginTop="5dp"
+                    />
+            </LinearLayout>
 
 
             <ImageView
@@ -46,28 +63,17 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"/>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/nombre"
-                android:text="@string/nombre1"
-                android:layout_gravity="center"
-                android:textSize="@dimen/infoPet"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/addFavorito"
-                android:layout_marginStart="@dimen/activity_horizontal_margin" />
-
-            <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/votos"
                     android:text="5"
                     android:layout_gravity="center"
                     android:textSize="@dimen/infoPet"
-                android:layout_alignBaseline="@+id/nombre"
-                android:layout_alignBottom="@+id/nombre"
                 android:layout_toStartOf="@+id/iconoFavs"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+
 
 
         </RelativeLayout>

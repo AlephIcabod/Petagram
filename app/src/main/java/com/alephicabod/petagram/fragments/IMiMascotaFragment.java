@@ -2,6 +2,7 @@ package com.alephicabod.petagram.fragments;
 
 import com.alephicabod.petagram.adapters.MiMascotaAdapter;
 import com.alephicabod.petagram.models.Foto;
+import com.alephicabod.petagram.models.Mascota;
 
 import java.util.ArrayList;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 
 public interface IMiMascotaFragment {
     public void generateGridLayout();
-    public MiMascotaAdapter createAdapter(ArrayList<Foto> fotos);
+    MiMascotaAdapter createAdapter(ArrayList<Foto> fotos, Mascota m);
+
     public void initAdapter(MiMascotaAdapter adapter);
 }

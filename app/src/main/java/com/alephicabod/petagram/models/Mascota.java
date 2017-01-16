@@ -1,32 +1,42 @@
 package com.alephicabod.petagram.models;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by angel on 02/01/2017.
  */
 
-public class Mascota implements Comparable{
-    private int picture,votos,id;
-    private String nombre;
+public class Mascota  implements Comparable {
+    private int votos;
+    private String nombre,id,picture,fecha;
     private ArrayList<Foto> fotos;
 
-    public Mascota(int picture, int votos, String nombre,ArrayList<Foto> fotos) {
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public Mascota(String picture, int votos, String nombre, ArrayList<Foto> fotos) {
         this.picture = picture;
         this.votos = votos;
         this.nombre = nombre;
         this.fotos=fotos;
+
     }
 
     public Mascota() {
 
     }
 
-    public int getPicture() {
+    public String getPicture() {
         return picture;
     }
 
-    public void setPicture(int picture) {
+    public void setPicture(String picture) {
         this.picture = picture;
     }
 
@@ -54,19 +64,24 @@ public class Mascota implements Comparable{
         this.fotos = fotos;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
     @Override
     public int compareTo(Object otra) {
-        return ((Mascota)otra).getVotos()-this.getVotos();
+        Date d=new Date(Long.parseLong(this.getFecha())*1000);
+        Date d2=new Date(Long.parseLong(((Mascota)otra).getFecha())*1000);
+
+        return -d.compareTo(d2);
+        //return ((Mascota)otra).getVotos()-this.getVotos();
     }
 
 
-
 }
+
+

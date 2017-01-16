@@ -1,5 +1,7 @@
 package com.alephicabod.petagram.adapters;
 
+import android.app.Activity;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 
 import com.alephicabod.petagram.R;
 import com.alephicabod.petagram.models.Foto;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -19,9 +22,9 @@ import java.util.ArrayList;
 public class MiMascotaAdapter extends RecyclerView.Adapter<MiMascotaAdapter.MiMascotaHolderView> {
 
     private ArrayList<Foto> fotos;
-
-    public MiMascotaAdapter(ArrayList<Foto> fotos) {
-        this.fotos = fotos;
+    private Activity context;
+    public MiMascotaAdapter(ArrayList<Foto> fotos,Activity a) {
+        this.fotos = fotos;this.context=a;
     }
 
     @Override
@@ -33,13 +36,16 @@ public class MiMascotaAdapter extends RecyclerView.Adapter<MiMascotaAdapter.MiMa
     @Override
     public void onBindViewHolder(MiMascotaAdapter.MiMascotaHolderView holder, int position) {
         Foto x=fotos.get(position);
-        holder.foto.setImageResource(x.getFoto());
+        Picasso.with(context)
+                .load(x.getUrl())
+                .placeholder(R.drawable.cat_footprint_48)
+                .into(holder.foto);
         holder.votos.setText(x.getVotos()+"");
-
     }
 
     @Override
     public int getItemCount() {
+//        return fotos.size();
         return fotos.size();
     }
 

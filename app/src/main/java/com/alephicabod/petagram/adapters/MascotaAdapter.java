@@ -10,11 +10,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alephicabod.petagram.R;
-import com.alephicabod.petagram.db.DataBase;
-import com.alephicabod.petagram.models.ConstructorMascotas;
+import com.alephicabod.petagram.db.ConstructorMascotas;
 import com.alephicabod.petagram.models.Mascota;
+import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by angel on 02/01/2017.
@@ -38,22 +41,22 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
     @Override
     public void onBindViewHolder(final MascotaViewHolder holder, int position) {
         final Mascota m=mascotas.get(position);
-        holder.foto.setImageResource(m.getPicture());
+        //holder.foto.setImageResource(m.getPicture());
+        Picasso.with(activity)
+                .load(m.getPicture())
+                .placeholder(R.drawable.cat_footprint_48)
+                .into(holder.foto);
+
         if(position%2==0)
             holder.foto.setBackgroundResource(R.color.fondo1);
         else
             holder.foto.setBackgroundResource(R.color.fondo2);
+            Calendar c=Calendar.getInstance();
+        c.setTimeInMillis(Long.parseLong(m.getFecha())*1000);
+        SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yy hh:mm:ss");
+        holder.fecha.setText(sdf.format(c.getTime()));
         holder.nombre.setText(m.getNombre());
         holder.votos.setText(m.getVotos()+"");
-        holder.votar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(activity,"Agregado un voto a "+m.getNombre(),Toast.LENGTH_SHORT).show();
-                ConstructorMascotas cm=new ConstructorMascotas(activity);
-                m.setVotos(cm.darLike(m).getVotos());
-                holder.votos.setText(m.getVotos()+"");
-            }
-        });
     }
 
     @Override
@@ -62,8 +65,8 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
     }
 
     public static class MascotaViewHolder extends RecyclerView.ViewHolder{
-        private ImageView foto,votar;
-        private TextView nombre,votos;
+        private ImageView foto;
+        private TextView nombre,votos,fecha;
 
 
         public MascotaViewHolder(View itemView) {
@@ -71,7 +74,7 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
             foto=(ImageView) itemView.findViewById(R.id.foto);
             nombre=(TextView)itemView.findViewById(R.id.nombre);
             votos=(TextView)itemView.findViewById(R.id.votos);
-            votar=(ImageView)itemView.findViewById(R.id.addFavorito);
+            fecha=(TextView)itemView.findViewById(R.id.fecha);
         }
     }
 }
