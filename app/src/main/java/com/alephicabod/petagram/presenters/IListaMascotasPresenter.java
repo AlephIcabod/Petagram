@@ -13,4 +13,5 @@ public interface IListaMascotasPresenter {
     public void showMascotas(ArrayList<Mascota> mascotas);
     public void getFavoritos();
     public void getMascotasRest();
+    public void getMascotasRestId(String d);
 }

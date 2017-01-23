@@ -65,6 +65,21 @@ public class ListaMascotasPresenter implements IListaMascotasPresenter{
         }
     }
 
+    public void getMascotasRestId(String id){
+        RestAdapter restAdapter=new RestAdapter();
+        Gson gson=restAdapter.constructirDeserializador();
+        Endpoints endpoints=restAdapter.establecerConexionInstagram(gson);
+        endpoints.getUsuario(id)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe((mascota)->{
+            mascotas.addAll(mascota.getMascotas());
+            Collections.sort(mascotas);
+            showMascotas(mascotas);
+
+        },e->e.printStackTrace());
+
+    }
 
 
 

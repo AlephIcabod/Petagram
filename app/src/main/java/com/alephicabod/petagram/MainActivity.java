@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.alephicabod.petagram.adapters.PageAdapter;
@@ -20,7 +21,9 @@ import com.alephicabod.petagram.fragments.MiMascotaFragment;
 import com.alephicabod.petagram.models.Mascota;
 import com.alephicabod.petagram.rest.Endpoints;
 import com.alephicabod.petagram.rest.adapter.RestAdapter;
+import com.alephicabod.petagram.rest.model.FollowResponse;
 import com.alephicabod.petagram.rest.model.UsuarioResponse;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,8 +46,10 @@ public class MainActivity extends AppCompatActivity {
         tabLayout=(TabLayout)findViewById(R.id.tabLayout);
         viewPager=(ViewPager)findViewById(R.id.viewPager);
         setUpPageView();
-        tabLayout.getTabAt(1).select();
+
     }
+
+
 
 
 

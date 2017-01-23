@@ -132,6 +132,8 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
             @Override
             public void onResponse(Call<UsuarioResponse> call, Response<UsuarioResponse> response) {
                 Log.d("RESPUESTA_NODE",response.code()+"");
+                UsuarioResponse response1=response.body();
+                Log.d("RESPUESTA_NODE",response1.getId_usuario_instagram());
             }
 
             @Override

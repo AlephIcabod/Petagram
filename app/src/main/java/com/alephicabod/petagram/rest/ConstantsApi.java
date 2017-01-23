@@ -16,6 +16,8 @@ public final class ConstantsApi {
     public static final String URL_DELETE_LIKE="media/{media-id}/likes"+KEY_ACCESS_TOKEN+ACCESS_TOKEN;
 
 
+    public static final String URL_FOLLOW="users/{user-id}/relationship"+KEY_ACCESS_TOKEN+ACCESS_TOKEN;
+
     //https://api.instagram.com/v1/media/{media-id}/likes
     //Cada usuario sandbox con su id corresponden en el indice de los arreglos;
     public static final String[] USUARIOS_SANDBOX={"4377271040","4302183848","4275789769"};

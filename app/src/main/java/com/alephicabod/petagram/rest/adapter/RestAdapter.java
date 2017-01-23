@@ -1,9 +1,11 @@
 package com.alephicabod.petagram.rest.adapter;
 
 import com.alephicabod.petagram.rest.ConstantsApi;
+import com.alephicabod.petagram.rest.Deserializador.FollowDeserializador;
 import com.alephicabod.petagram.rest.Deserializador.MascotaDeserializador;
 import com.alephicabod.petagram.rest.Deserializador.MiMascotaDeserializador;
 import com.alephicabod.petagram.rest.Endpoints;
+import com.alephicabod.petagram.rest.model.FollowResponse;
 import com.alephicabod.petagram.rest.model.LikeResponse;
 import com.alephicabod.petagram.rest.model.MascotaResponse;
 import com.alephicabod.petagram.rest.model.MiMascotaResponse;
@@ -68,6 +70,11 @@ public class RestAdapter {
         return  builder.create();
     }
 
+    public Gson constructorDeserializadorFollow(){
+        GsonBuilder builder=new GsonBuilder();
+        builder.registerTypeAdapter(FollowResponse.class,new FollowDeserializador());
+        return builder.create();
+    }
 
 
 }

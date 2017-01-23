@@ -51,11 +51,20 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
+
         <service android:name=".InstanceIdServiceFirebase">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
+        
+        <receiver android:name=".AccionesNotificacion">
+            <intent-filter>
+                <action android:name="VER_PERFIL"></action>
+                <action android:name="FOLLOW"></action>
+                <action android:name="USUARIO"></action>
+            </intent-filter>
+        </receiver>
 
     </application>
 

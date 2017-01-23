@@ -2,6 +2,7 @@ package com.alephicabod.petagram.rest;
 
 
 
+import com.alephicabod.petagram.rest.model.FollowResponse;
 import com.alephicabod.petagram.rest.model.LikeResponse;
 import com.alephicabod.petagram.rest.model.MascotaResponse;
 import com.alephicabod.petagram.rest.model.MiMascotaResponse;
@@ -37,6 +38,11 @@ public interface Endpoints  {
     Call<LikeResponse> quitarLike(@Path("media-id") String media_id);
 
 
+    @GET(ConstantsApi.URL_FOLLOW)
+    Call<FollowResponse> verStatus(@Path("user-id") String user_id);
+    @FormUrlEncoded
+    @POST(ConstantsApi.URL_FOLLOW)
+    Call<FollowResponse> follow(@Path("user-id") String user_id,@Field("action") String action);
 
     @FormUrlEncoded
     @POST(ConstantsApi.KEY_FIREBASE_USUARIO)
