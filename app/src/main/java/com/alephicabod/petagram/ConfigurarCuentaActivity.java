@@ -1,12 +1,19 @@
 package com.alephicabod.petagram;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.transition.Explode;
+import android.transition.Slide;
+import android.transition.Visibility;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ConfigurarCuentaActivity extends AppCompatActivity {
-
+    private Activity activity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +29,8 @@ public class ConfigurarCuentaActivity extends AppCompatActivity {
         Toolbar appbar=(Toolbar)findViewById(R.id.appBarDetalle);
         setSupportActionBar(appbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        activity=this;
+        Utilidades.establecerTransitions(this);
     }
 
 
@@ -37,12 +46,12 @@ public class ConfigurarCuentaActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.mContacto:
                 i=new Intent(ConfigurarCuentaActivity.this,ContactoActivity.class);
-                startActivity(i);
+                Utilidades.iniciarActividad(i,activity);
                 finish();
                 break;
             case R.id.mAbout:
                 i=new Intent(ConfigurarCuentaActivity.this,AcercaDeActivity.class);
-                startActivity(i);
+                Utilidades.iniciarActividad(i,activity);
                 finish();
                 break;
         }
@@ -61,9 +70,10 @@ public class ConfigurarCuentaActivity extends AppCompatActivity {
                 editor.commit();
                 Toast.makeText(ConfigurarCuentaActivity.this, "Cuenta guardada con exito", Toast.LENGTH_SHORT).show();
                 Intent i=new Intent(ConfigurarCuentaActivity.this,MainActivity.class);
-                startActivity(i);
+                Utilidades.iniciarActividad(i,activity);
                 finish();
             }
         });
     }
+
 }

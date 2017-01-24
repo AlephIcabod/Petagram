@@ -1,11 +1,16 @@
 package com.alephicabod.petagram;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.StrictMode;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.transition.Explode;
+import android.transition.Slide;
+import android.transition.Visibility;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -84,6 +89,9 @@ public class ContactoActivity extends AppCompatActivity {
                 }
             }
         });
+
+        Utilidades.establecerTransitions(this);
+
     }
 
 

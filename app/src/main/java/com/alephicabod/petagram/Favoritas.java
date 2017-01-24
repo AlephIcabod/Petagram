@@ -1,10 +1,15 @@
 package com.alephicabod.petagram;
 
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.transition.Explode;
+import android.transition.Slide;
+import android.transition.Visibility;
+import android.view.Gravity;
 
 import com.alephicabod.petagram.adapters.MascotaAdapter;
 import com.alephicabod.petagram.fragments.IListaMascotasFragment;
@@ -29,6 +34,17 @@ public class Favoritas extends AppCompatActivity implements IListaMascotasFragme
         listaFavoritos=(RecyclerView)findViewById(R.id.listaFavoritas);
         presenter =new ListaMascotasPresenter(this,this);
         presenter.getFavoritos();
+
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+            Slide fade=new Slide(Gravity.RIGHT);
+            fade.setDuration(1500);
+            Explode explode=new Explode();
+            explode.setMode(Visibility.MODE_IN);
+            explode.setDuration(1500);
+            getWindow().setEnterTransition(explode);
+            getWindow().setReturnTransition(explode);
+            getWindow().setExitTransition(fade);
+        }
     }
 
     @Override
